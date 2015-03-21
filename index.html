@@ -10,16 +10,22 @@
 			uniform float time;
 			attribute float index;
 			varying vec2 vUv;
+			uniform float amplitude;
 			uniform float mouseX;
 			uniform float mouseY;
+			uniform float mode;
 
 			void main() {
 			  vUv = uv;
 			  float t = time/100.0;
-			  //float amplitude = sin(time/20.0) * pow(position.x/10.0, 2.0) * (20.0*(sin(position.x)/position.x)) * sin(position.x);
-			  float amplitude = 5.0 * sin((t/20.0) - (position.x) / 10.0) * sin((time/20.0) - position.y / 10.0);
+			  float zValue = 0.0;
+			  if(mode == 1.0){
+			  	zValue = amplitude * sin((t/20.0) - (position.x) / 10.0) * sin((time/20.0) - position.y / 10.0);
+			  } else {
+				zValue = cos(sqrt(position.x * position.x + position.y * position.y)*0.2+(t*2.0))*amplitude;
+			  }
 
-			  vec3 newPosition = position + vec3(0.0,0.0,amplitude);
+			  vec3 newPosition = position + vec3(0.0,0.0,zValue);
 			  gl_Position = projectionMatrix *
 			                modelViewMatrix *
 			                vec4(newPosition, 1.0);
