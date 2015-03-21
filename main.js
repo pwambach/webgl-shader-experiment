@@ -116,7 +116,7 @@
 		attributes.index.value.push(index);
 	});
 
-	var mouseMoveHandler = function(event) {
+	/*var mouseMoveHandler = function(event) {
         var intersects = getIntersectFromMouse(event, plane);
         if(intersects.length){
         	uniforms.mouseX.value = intersects[0].point.x;
@@ -124,7 +124,7 @@
         }
     };
 
-    $('#container').on('mousemove', mouseMoveHandler);
+    $('#container').on('mousemove', mouseMoveHandler);*/
 
 
 	// Render loop
