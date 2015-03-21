@@ -65,13 +65,17 @@
 	};
 
 	var uniforms = {
+	  mode: {
+	  	type: 'f',
+	  	value: 1
+	  },
 	  time: {
 	    type: 'f', // a float
 	    value: 0
 	  },
 	  amplitude: {
 	  	type: 'f',
-	  	value: 10
+	  	value: 4
 	  },
 	  mouseX: {
 	  	type: 'f',
@@ -146,12 +150,18 @@
 
 	//GUI
 	var params = {
-		amplitude: 10
+		amplitude: 4,
+		mode: true,
 	};
 	var gui = new dat.GUI();
-	gui.add(params, 'amplitude').min(0).max(50).onChange(function(){
+	gui.add(params, 'amplitude').min(0).max(20).onChange(function(){
     	uniforms.amplitude.value = params.amplitude;
 	});
+	gui.add(params, 'mode').onChange(function(){
+    	uniforms.mode.value = params.mode ? 1 : 0;
+	});
+
+
 	$('.dg').on('mousedown', function(e){
 		controls.enabled = false;
 	});
