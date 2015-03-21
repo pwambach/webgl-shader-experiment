@@ -69,6 +69,10 @@
 	    type: 'f', // a float
 	    value: 0
 	  },
+	  amplitude: {
+	  	type: 'f',
+	  	value: 10
+	  },
 	  mouseX: {
 	  	type: 'f',
 	  	value: 0
@@ -135,6 +139,25 @@
 	}
 	$container.append(renderer.domElement); 
 	render();
+
+
+
+
+
+	//GUI
+	var params = {
+		amplitude: 10
+	};
+	var gui = new dat.GUI();
+	gui.add(params, 'amplitude').min(0).max(50).onChange(function(){
+    	uniforms.amplitude.value = params.amplitude;
+	});
+	$('.dg').on('mousedown', function(e){
+		controls.enabled = false;
+	});
+	$('body').on('mouseup', function(e){
+		controls.enabled = true;
+	});
 
 
 })(this);
